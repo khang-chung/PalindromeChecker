@@ -2,9 +2,9 @@ public void setup()
 {
   String lines[] = loadStrings("palindromes.txt");
   println("there are " + lines.length + " lines");
-  for (int i=0; i < lines.length; i++) 
+  for (int i=0; i < lines.length; i++)
   {
-    if(palindrome(lines[i])==true)
+    if(palindrome(onlyLetters(noSpace(lines[i].toLowerCase())))==true)
     {
       println(lines[i] + " IS a palindrome.");
     }
@@ -14,16 +14,41 @@ public void setup()
     }
   }
 }
-public boolean palindrome(String word)
+public boolean palindrome(String sWord)
 {
-  //your code here
-  return false;
-}
-public String reverse(String str)
-{
-    String sNew = new String();
-    //your code here
-    return sNew;
+    for(int i = 0; i < sWord.length(); i++){
+    if(sWord.charAt(i) != sWord.charAt(sWord.length()-i-1)){
+      return false;
+    }
+  }
+  return true;
 }
 
+public String reverse(String sWord)
+{
+  String yeet = "";
+  for(int i = 0; i < sWord.length(); i++){
+    yeet += sWord.substring(sWord.length()-i-1,sWord.length()-i);
+  }
+  return yeet;
+}
 
+public String noSpace(String sWord){
+  String yeet = "";
+  for(int i = 0; i < sWord.length(); i++){
+    if(sWord.charAt(i) != ' '){
+      yeet += sWord.charAt(i);
+    }
+  }
+  return yeet;
+}
+
+public String onlyLetters(String sString){
+  String yeet = "";
+  for(int i = 0 ; i < sString.length(); i++){
+    if(Character.isLetter(sString.charAt(i))){
+      yeet += sString.charAt(i);
+    }
+  }
+  return yeet;
+}
